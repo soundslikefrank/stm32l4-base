@@ -16,6 +16,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_program(OPENOCD openocd)
 
 set(VENDOR_FILES
+  # Feel free to uncomment files that you don't need
   vendor/stm32f3xx_hal_driver/Src/stm32f3xx_ll_usb.c
   vendor/stm32f3xx_hal_driver/Src/stm32f3xx_hal_i2c.c
   vendor/stm32f3xx_hal_driver/Src/stm32f3xx_hal_i2c_ex.c
@@ -48,7 +49,7 @@ set(PROJECT_FILES
   src/stm32f3xx_it.cpp # Interrupt handlers
   src/system_stm32f3xx.c # System settings
 
-  startup_stm32f303xc.s
+  startup_stm32f303xc.s # STM32 Startup instructions
   )
 
 set(EXECUTABLE ${PROJECT_NAME}.out)
@@ -119,6 +120,6 @@ set_target_properties(${EXECUTABLE} PROPERTIES ADDITIONAL_CLEAN_FILES
   )
 
 add_custom_target(upload COMMAND
-  ${OPENOCD} -f interface/stlink-v2.cfg -f target/stm32f3x.cfg -c "init" -c "reset init" -c "halt" -c "flash write_image erase ${PROJECT_NAME}.hex" -c "verify_image ${PROJECT_NAME}.hex" -c "reset run" -c "shutdown"
+  ${OPENOCD} -f interface/stlink.cfg -f target/stm32f3x.cfg -c "init" -c "reset init" -c "halt" -c "flash write_image erase ${PROJECT_NAME}.hex" -c "verify_image ${PROJECT_NAME}.hex" -c "reset run" -c "shutdown"
   DEPENDS ${EXECUTABLE}
   )
