@@ -46,3 +46,13 @@ target_link_options(${EXECUTABLE} PRIVATE
 
 5) -_optional_- Uncomment HAL modules that you don't need in `include/stm32f3xx_hal_conf.h` and `CMakeLists.txt`
 
+6) To build (we are assuming an [out-of-source build](https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#out-of-source-build-trees)):
+
+```bash
+mkdir build && cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=../arm-none-eabi-gcc.cmake ..
+make # or directly
+make upload # use OpenOCD to flash!
+```
+
+You only ever need to run the `cmake` command again after you made changes to the CMakeLists.txt.
