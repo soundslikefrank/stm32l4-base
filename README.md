@@ -6,7 +6,7 @@ A clean (and very simple) base for stm32f3xx projects based on cmake
 1) Clone this repository:
 
 ```
-git clone https://github.com/soundslikefrank/stm32f3-base.git my-cool-project
+git clone --recursive https://github.com/soundslikefrank/stm32f3-base.git my-cool-project
 ```
 
 2) Now we need to make a few adjustments. Use STM32CubeMX to generate code for your MCU/board (leave all default values), but use `Makefile` as Toolchain / IDE
@@ -14,6 +14,9 @@ git clone https://github.com/soundslikefrank/stm32f3-base.git my-cool-project
 
   `STM32CubeMXProject/startup_stm32f3xxxx.s` -> `./startup_stm32f3xxxx.s`
   `STM32CubeMXProject/STM32F3xxxxxx_FLASH.ld` -> `./STM32F3xxxxxx_FLASH.ld`
+
+Then you can remove the old corresponding old files that come with this project.
+
 3) Adjust the references to these files in the `CMakeLists.txt`:
 
 ```cmake
@@ -29,6 +32,7 @@ and
 
 
 ```cmake
+# If you're not sure which identifier to use, look into the STM32CubeMX generated Makefile
 target_compile_definitions(${EXECUTABLE} PRIVATE
   -DUSE_HAL_DRIVER
   -DSTM32F3xxxx # change this!
