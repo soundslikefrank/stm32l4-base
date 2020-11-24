@@ -17,8 +17,3 @@ int main() {
     HAL_Delay(1000);
   }
 }
-
-extern "C" {
-void SysTick_Handler(void) { HAL_IncTick(); }
-}
-

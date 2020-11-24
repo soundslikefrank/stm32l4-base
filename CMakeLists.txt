@@ -45,7 +45,8 @@ set(VENDOR_FILES
 
 set(PROJECT_FILES
   src/main.cpp
-  src/system_stm32f3xx.c
+  src/stm32f3xx_it.cpp # Interrupt handlers
+  src/system_stm32f3xx.c # System settings
 
   startup_stm32f303xc.s
   )
