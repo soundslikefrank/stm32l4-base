@@ -47,6 +47,7 @@ void SystemClock_Config(void) {
 
 int main() {
   HAL_Init();
+  SystemClock_Config();
 
   HUART2_Init();
 
